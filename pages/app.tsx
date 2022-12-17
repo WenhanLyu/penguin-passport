@@ -9,7 +9,7 @@ import {
     Input,
     Box
 } from "@chakra-ui/react";
-import SelectWalletModal from "../components/Modal";
+import SelectWalletModal from "../components/SelectWalletModal";
 import {useWeb3React} from "@web3-react/core";
 import {CheckCircleIcon, WarningIcon} from "@chakra-ui/icons";
 import {Tooltip} from "@chakra-ui/react";
@@ -163,81 +163,6 @@ export default function Home() {
                     </Tooltip>
                     <Text>{`Network ID: ${chainId ? chainId : "No Network"}`}</Text>
                 </VStack>
-                {active && (
-                    <HStack justifyContent="flex-start" alignItems="flex-start">
-                        <Box
-                            maxW="sm"
-                            borderWidth="1px"
-                            borderRadius="lg"
-                            overflow="hidden"
-                            padding="10px"
-                        >
-                            <VStack>
-                                <Button onClick={switchNetwork} isDisabled={!network}>
-                                    Switch Network
-                                </Button>
-                                {/*@ts-ignore*/}
-                                <Select placeholder="Select network" onChange={handleNetwork}>
-                                    <option value="3">Ropsten</option>
-                                    <option value="4">Rinkeby</option>
-                                    <option value="42">Kovan</option>
-                                    <option value="1666600000">Harmony</option>
-                                    <option value="42220">Celo</option>
-                                </Select>
-                            </VStack>
-                        </Box>
-                        <Box
-                            maxW="sm"
-                            borderWidth="1px"
-                            borderRadius="lg"
-                            overflow="hidden"
-                            padding="10px"
-                        >
-                            <VStack>
-                                <Button onClick={signMessage} isDisabled={!message}>
-                                    Sign Message
-                                </Button>
-                                <Input
-                                    placeholder="Set Message"
-                                    maxLength={20}
-                                    onChange={handleInput}
-                                    w="140px"
-                                />
-                                {signature ? (
-                                    <Tooltip label={signature} placement="bottom">
-                                        <Text>{`Signature: ${truncateAddress(signature)}`}</Text>
-                                    </Tooltip>
-                                ) : null}
-                            </VStack>
-                        </Box>
-                        <Box
-                            maxW="sm"
-                            borderWidth="1px"
-                            borderRadius="lg"
-                            overflow="hidden"
-                            padding="10px"
-                        >
-                            <VStack>
-                                <Button onClick={verifyMessage} isDisabled={!signature}>
-                                    Verify Message
-                                </Button>
-                                {verified !== undefined ? (
-                                    verified === true ? (
-                                        <VStack>
-                                            <CheckCircleIcon color="green"/>
-                                            <Text>Signature Verified!</Text>
-                                        </VStack>
-                                    ) : (
-                                        <VStack>
-                                            <WarningIcon color="red"/>
-                                            <Text>Signature Denied!</Text>
-                                        </VStack>
-                                    )
-                                ) : null}
-                            </VStack>
-                        </Box>
-                    </HStack>
-                )}
                 {/*@ts-ignore*/}
                 <Text>{error ? error.message : null}</Text>
             </VStack>
