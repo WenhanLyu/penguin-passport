@@ -1,5 +1,5 @@
 import {Drawer, DrawerContent, DrawerBody, DrawerCloseButton, DrawerHeader, DrawerOverlay} from "@chakra-ui/modal";
-import {Box, Button, FormLabel, HStack, Input, Stack, Text, useDisclosure, VStack} from "@chakra-ui/react";
+import {Box, Button, FormLabel, HStack, Input, Stack, Text, useDisclosure, useToast, VStack} from "@chakra-ui/react";
 import {useEffect, useState} from "react";
 
 interface SettingsDrawerProps {
@@ -13,6 +13,10 @@ interface SettingsDrawerProps {
 export default function SettingsDrawer(props: SettingsDrawerProps) {
     const {isOpen, onClose, handleProfileChange, nickname, email} = props;
 
+    const [buttonLoading, setButtonLoading] = useState(false);
+
+    const profileToast = useToast();
+
     return (
         <>
             <Drawer isOpen={isOpen} onClose={onClose}>
@@ -25,7 +29,7 @@ export default function SettingsDrawer(props: SettingsDrawerProps) {
                     <DrawerBody>
                         <Stack spacing={'24px'}>
                             <Box>
-                                <Text size={'xl'}>PenguinID</Text>
+                                <Text fontSize={'2xl'} as={'b'}>PenguinID</Text>
                                 <VStack align={'left'}>
                                     <Text size={'sm'}>Complete this to get your Penguin Passport verified.</Text>
                                     <Button colorScheme={'blue'} borderRadius={'10px'} w={'200px'}>Get Verified</Button>
@@ -37,8 +41,16 @@ export default function SettingsDrawer(props: SettingsDrawerProps) {
                                     id='profile-form'
                                     onSubmit={(event) => {
                                         event.preventDefault();
+                                        setButtonLoading(true);
                                         // @ts-ignore
                                         handleProfileChange(event.target.nickname.value, event.target.email.value);
+                                        setButtonLoading(false);
+                                        profileToast({
+                                            title: "Profile submitted.",
+                                            status: "success",
+                                            duration: 5000,
+                                            isClosable: true,
+                                        });
                                     }}
                                 >
                                     <VStack align={'left'} spacing={'24px'}>
@@ -53,8 +65,14 @@ export default function SettingsDrawer(props: SettingsDrawerProps) {
                                                    type={'email'} defaultValue={email ? email : ''}/>
                                         </Box>
                                         <Box>
-                                            <Button colorScheme={'teal'} borderRadius={'10px'} type={'submit'}
-                                                    w={'100px'}>Submit</Button>
+                                            <Button colorScheme={'teal'}
+                                                    borderRadius={'10px'}
+                                                    type={'submit'}
+                                                    w={'100px'}
+                                                    isLoading={buttonLoading}
+                                            >
+                                                Submit
+                                            </Button>
                                         </Box>
                                     </VStack>
                                 </form>

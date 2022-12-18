@@ -27,11 +27,11 @@ export default function Home() {
     return (
         <ChakraProvider theme={theme}>
             <Web3ReactProvider getLibrary={getLibrary}>
-                {/*<App/>*/}
-                <Connect/>
-                <NFTCard contractAddress={'0xD000F000Aa1F8accbd5815056Ea32A54777b2Fc4'} expireDate={new Date()}
-                         rewards={''}/>
+                <App/>
+                {/*<NFTCard contractAddress={'0xD000F000Aa1F8accbd5815056Ea32A54777b2Fc4'} expireDate={new Date()}*/}
+                {/*         rewards={''}/>*/}
             </Web3ReactProvider>
+            {/*<style> @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');</style>*/}
         </ChakraProvider>
     )
 }

@@ -47,12 +47,13 @@ export default function ProfileMenu() {
     return (
         <>
             <Menu>
-                <MenuButton as={Button} rightIcon={<ChevronDownIcon/>} height={'80px'} borderRadius={'20px'}>
+                <MenuButton as={Button} rightIcon={<ChevronDownIcon/>} h={24} borderRadius={20} w={60}
+                            colorScheme={"facebook"}>
                     <HStack w="100%" justifyContent="center" spacing={'24px'}>
                         <Blockie seed={account ? account : "0x0000000000000000000000000000000000000000"} size={12}/>
                         <VStack h="100%" justifyContent="center">
                             <Text>My Profile</Text>
-                            <Text>{displayAddress}</Text>
+                            <Text>{nickname ? nickname : displayAddress}</Text>
                         </VStack>
                     </HStack>
                 </MenuButton>

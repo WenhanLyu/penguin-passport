@@ -16,6 +16,9 @@ import {Tooltip} from "@chakra-ui/react";
 import {networkParams} from "../src/network";
 import {connectors} from "../connectors/connector";
 import {toHex, truncateAddress} from "../src/utils";
+import Connect from "../components/Connect";
+import PageFooter from "../components/PageFooter";
+import PageHeader from "../components/PageHeader";
 
 export default function Home() {
     const {isOpen, onOpen, onClose} = useDisclosure();
@@ -117,56 +120,8 @@ export default function Home() {
 
     return (
         <>
-            <VStack justifyContent="center" alignItems="center" h="100vh">
-                <HStack marginBottom="10px">
-                    <Text
-                        margin="0"
-                        lineHeight="1.15"
-                        fontSize={["1.5em", "2em", "3em", "4em"]}
-                        fontWeight="600"
-                    >
-                        Connect with
-                    </Text>
-                    <Text
-                        margin="0"
-                        lineHeight="1.15"
-                        fontSize={["1.5em", "2em", "3em", "4em"]}
-                        fontWeight="600"
-                        sx={{
-                            background: "linear-gradient(90deg, #1652f0 0%, #b9cbfb 70.35%)",
-                            WebkitBackgroundClip: "text",
-                            WebkitTextFillColor: "transparent"
-                        }}
-                    >
-                        Web3-React
-                    </Text>
-                </HStack>
-                <HStack>
-                    {!active ? (
-                        <Button onClick={onOpen}>Connect Wallet</Button>
-                    ) : (
-                        <Button onClick={disconnect}>Disconnect</Button>
-                    )}
-                </HStack>
-                <VStack justifyContent="center" alignItems="center" padding="10px 0">
-                    <HStack>
-                        <Text>{`Connection Status: `}</Text>
-                        {active ? (
-                            <CheckCircleIcon color="green"/>
-                        ) : (
-                            <WarningIcon color="#cd5700"/>
-                        )}
-                    </HStack>
-
-                    <Tooltip label={account} placement="right">
-                        <Text>{`Account: ${truncateAddress(account)}`}</Text>
-                    </Tooltip>
-                    <Text>{`Network ID: ${chainId ? chainId : "No Network"}`}</Text>
-                </VStack>
-                {/*@ts-ignore*/}
-                <Text>{error ? error.message : null}</Text>
-            </VStack>
-            <SelectWalletModal isOpen={isOpen} closeModal={onClose}/>
+            <PageHeader/>
+            <PageFooter/>
         </>
     );
 }

@@ -19,7 +19,15 @@ export default function Connect() {
     return (
         <>
             {!active ? (
-                <Button onClick={onOpen}>Connect Your Wallet</Button>
+                <Button
+                    onClick={onOpen}
+                    h={24}
+                    borderRadius={24}
+                    w={60}
+                    colorScheme={"teal"}
+                >
+                    Connect Your Wallet
+                </Button>
             ) : (
                 <ProfileMenu/>
             )}
