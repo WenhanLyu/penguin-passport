@@ -3,6 +3,7 @@ import {useWeb3React} from "@web3-react/core";
 import React, {useEffect, useState} from "react";
 import {connectors} from "../../connectors/connector";
 import SelectWalletModal from "../SelectWalletModal";
+import ProfileMenu from "../ProfileMenu";
 
 export default function Connect() {
     const {isOpen, onOpen, onClose} = useDisclosure();
@@ -14,29 +15,13 @@ export default function Connect() {
         deactivate,
         active
     } = useWeb3React();
-    const [verified, setVerified] = useState<boolean>();
-
-    const refreshState = () => {
-        // @ts-ignore
-        window.localStorage.setItem("provider", undefined);
-        setVerified(undefined);
-    };
-
-    const disconnect = () => {
-        refreshState();
-        deactivate();
-    };
-
-    useEffect(() => {
-        console.log(active);
-    }, []);
 
     return (
         <>
             {!active ? (
                 <Button onClick={onOpen}>Connect Your Wallet</Button>
             ) : (
-                <Button>Profile</Button>
+                <ProfileMenu/>
             )}
             <SelectWalletModal isOpen={isOpen} closeModal={onClose}/>
         </>

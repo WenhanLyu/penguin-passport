@@ -90,12 +90,16 @@ export default function SelectWalletModal(props: SelectWalletModalProps) {
 
     useEffect(() => {
         onConnectProcessEnd();
+        console.log(active);
         if (active) {
             setProgressPercent(100);
-            setInterval(() => {
-                closeModal();
-                firstStep();
-            }, 2000);
+            closeModal();
+            firstStep();
+            // TODO: why trigger this...
+            // setInterval(() => {
+            //     closeModal();
+            //     firstStep();
+            // }, 2000);
         }
     }, [active]);
 
@@ -269,33 +273,6 @@ export default function SelectWalletModal(props: SelectWalletModalProps) {
                         </>)}
                     </Grid>
                 </ModalBody>
-                {/*<ModalBody paddingBottom="1.5rem">*/}
-                {/*    <VStack>*/}
-                {/*        {inConnectProcess && <CircularProgress isIndeterminate/>}*/}
-                {/*        {hasErrorInConnect && <Alert status={'error'}/>}*/}
-                {/*        <Button*/}
-                {/*            variant="outline"*/}
-                {/*            onClick={() => {*/}
-                {/*                setInConnectProcess(true);*/}
-                {/*                activate(connectors.injected);*/}
-                {/*                setProvider("injected");*/}
-                {/*                // closeModal();*/}
-                {/*            }}*/}
-                {/*            w="100%"*/}
-                {/*        >*/}
-                {/*            <HStack w="100%" justifyContent="center">*/}
-                {/*                <Image*/}
-                {/*                    src="/mm.png"*/}
-                {/*                    alt="Metamask Logo"*/}
-                {/*                    width={25}*/}
-                {/*                    height={25}*/}
-                {/*                    borderRadius="3px"*/}
-                {/*                />*/}
-                {/*                <Text>Metamask</Text>*/}
-                {/*            </HStack>*/}
-                {/*        </Button>*/}
-                {/*    </VStack>*/}
-                {/*</ModalBody>*/}
             </ModalContent>
         </Modal>
     );
