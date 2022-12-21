@@ -22,6 +22,8 @@ import PageHeader from "../components/PageHeader";
 import MintButton from "../components/MintButton";
 import {Montserrat} from "@next/font/google"
 import CardStack from "../components/CardStack";
+import PageBody from "../components/PageBody";
+
 
 // const montserrat = Montserrat();
 
@@ -127,7 +129,7 @@ export default function Home() {
         <>
             <main>
                 <PageHeader/>
-                <CardStack/>
+                <PageBody/>
                 {/*<MintButton/>*/}
                 <PageFooter/>
             </main>

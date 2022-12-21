@@ -1,13 +1,19 @@
 import useSWR from 'swr'
 import {useWeb3React} from "@web3-react/core";
-import {Badge, Box, Button, Heading, HStack, Image, Text, Tooltip, VStack} from "@chakra-ui/react";
+import {Badge, Box, Button, Heading, HStack, Image, Text, Tooltip, useColorModeValue, VStack} from "@chakra-ui/react";
 import {useEffect, useState} from "react";
 import {CheckCircleIcon, CheckIcon, LockIcon} from "@chakra-ui/icons";
+import {Montserrat} from "@next/font/google"
+
+const montserrat = Montserrat();
 
 interface NFTCardProps {
+    cardID: number,
     contractAddress: string,
     contractName: string,
     imageUrl: string,
+    description: string,
+    validateFunction: (id: number) => void,
     expireDate?: Date,
     rewards?: string,
 }
@@ -15,7 +21,7 @@ interface NFTCardProps {
 export default function NFTCard(props: NFTCardProps) {
     // const fetcher = (url: string) => fetch(url).then(r => r.json());
     const {account, active} = useWeb3React();
-    const {contractAddress, contractName, imageUrl, expireDate, rewards} = props;
+    const {cardID, contractAddress, contractName, imageUrl, expireDate, rewards, description, validateFunction} = props;
 
     const [isActive, setIsActive] = useState(true);
     const [isChecking, setIsChecking] = useState(false);
@@ -38,6 +44,7 @@ export default function NFTCard(props: NFTCardProps) {
             .then((data) => {
                 if (data.assets && data.assets.length > 0) {
                     setHasAsset(true);
+                    validateFunction(cardID);
                 } else {
                     setNotHasAsset(true);
                 }
@@ -54,15 +61,17 @@ export default function NFTCard(props: NFTCardProps) {
                 boxShadow={'lg'}
                 w={'60%'}
                 justifyContent={'center'}
-                mt={10}
+                mt={'20px'}
                 h={'200px'}
-                backgroundColor={'blackAlpha.100'}
+                className={montserrat.className}
+                bg={useColorModeValue('blackAlpha.200', 'blackAlpha.50')}
+                color={useColorModeValue('gray.700', 'gray.200')}
             >
                 <Box w={'80%'} justifyContent={'space-between'}>
                     <HStack mt={'20px'} mb={'20px'}>
                         <Image
-                            borderRadius={'full'}
-                            boxSize={'100px'}
+                            borderRadius={'lg'}
+                            boxSize={'150px'}
                             src={imageUrl}
                             alt={contractName}
                             ml={'20px'}
@@ -70,11 +79,9 @@ export default function NFTCard(props: NFTCardProps) {
                         />
                         <Box>
                             <VStack alignItems={'flex-start'}>
-                                <Heading size={'xl'}>{contractName}</Heading>
-                                <Text>
-                                    BBBBBB <br/>
-                                    AAAAAA <br/>
-                                    CCCCCC <br/>
+                                <Text fontSize={'2xl'} as={'b'}>{contractName}</Text>
+                                <Text noOfLines={3}>
+                                    {description}
                                 </Text>
                             </VStack>
                         </Box>
@@ -85,8 +92,13 @@ export default function NFTCard(props: NFTCardProps) {
                         <Box>
                             {isActive ? (
                                 <>
-                                    <Badge variant={'solid'} colorScheme={'green'} borderRadius={'md'}>
-                                        ACTIVE
+                                    <Badge
+                                        variant={'solid'}
+                                        colorScheme={'green'}
+                                        borderRadius={'md'}
+                                        alignContent={'center'}
+                                    >
+                                        ACTIVE NOW
                                     </Badge>
                                 </>
                             ) : (
@@ -155,6 +167,12 @@ export default function NFTCard(props: NFTCardProps) {
                                         Not here...
                                     </Text>
                                 </Tooltip>
+                            )}
+                            {!account && !active && (
+                                <Text color={'red.500'}>
+                                    <LockIcon mr={'5px'} color={'red.500'}/>
+                                    Connect wallet first
+                                </Text>
                             )}
                         </Box>
                     </VStack>
