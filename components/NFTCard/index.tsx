@@ -1,6 +1,18 @@
 import useSWR from 'swr'
 import {useWeb3React} from "@web3-react/core";
-import {Badge, Box, Button, Heading, HStack, Image, Text, Tooltip, useColorModeValue, VStack} from "@chakra-ui/react";
+import {
+    Badge,
+    Box,
+    Button,
+    Heading,
+    Hide,
+    HStack,
+    Image,
+    Text,
+    Tooltip,
+    useColorModeValue,
+    VStack
+} from "@chakra-ui/react";
 import {useEffect, useState} from "react";
 import {CheckCircleIcon, CheckIcon, LockIcon} from "@chakra-ui/icons";
 import {Montserrat} from "@next/font/google"
@@ -25,6 +37,7 @@ export default function NFTCard(props: NFTCardProps) {
 
     const [isActive, setIsActive] = useState(true);
     const [isChecking, setIsChecking] = useState(false);
+    const [checked, setChecked] = useState(false);
     const [hasAsset, setHasAsset] = useState(false);
     const [notHasAsset, setNotHasAsset] = useState(false);
 
@@ -44,6 +57,7 @@ export default function NFTCard(props: NFTCardProps) {
             .then((data) => {
                 if (data.assets && data.assets.length > 0) {
                     setHasAsset(true);
+                    setChecked(true);
                     validateFunction(cardID);
                 } else {
                     setNotHasAsset(true);
@@ -67,24 +81,32 @@ export default function NFTCard(props: NFTCardProps) {
                 boxShadow={useColorModeValue('6px 6px 0 teal', '6px 6px 0 white')}
                 width={"60%"}
                 className={montserrat.className}
+                spacing={5}
             >
                 <Box w={'80%'} justifyContent={'space-between'}>
                     <HStack mt={'20px'} mb={'20px'}>
-                        <Image
-                            rounded={'sm'}
-                            bg={useColorModeValue("white", "white")}
-                            border={'1px'}
-                            borderColor={"black"}
-                            boxShadow={useColorModeValue('6px 6px 0 black', '6px 6px 0 teal')}
-                            color={useColorModeValue("black", "black")}
-                            boxSize={'150px'}
-                            src={imageUrl}
-                            alt={contractName}
-                            ml={'20px'}
-                            mr={'20px'}
-                        />
+
+                        <Hide below={'1080px'}>
+                            <Box minW={'200px'}>
+                                <Image
+                                    rounded={'sm'}
+                                    bg={useColorModeValue("white", "white")}
+                                    border={'1px'}
+                                    borderColor={"black"}
+                                    boxShadow={useColorModeValue('6px 6px 0 black', '6px 6px 0 teal')}
+                                    color={useColorModeValue("black", "black")}
+                                    boxSize={'150px'}
+                                    src={imageUrl}
+                                    alt={contractName}
+                                    ml={'20px'}
+                                    mr={'10px'}
+                                />
+                            </Box>
+                        </Hide>
+
                         <Box
                             color={"black"}
+                            ml={'10px'}
                         >
                             <VStack alignItems={'flex-start'}>
                                 <Text fontSize={'2xl'} as={'b'}>{contractName}</Text>
@@ -95,8 +117,8 @@ export default function NFTCard(props: NFTCardProps) {
                         </Box>
                     </HStack>
                 </Box>
-                <Box w={'20%'}>
-                    <VStack mr={'20px'}>
+                <Box minW={60} mr={'10px'}>
+                    <VStack>
                         <Box>
                             {isActive ? (
                                 <>
@@ -153,6 +175,7 @@ export default function NFTCard(props: NFTCardProps) {
                                         isLoading={isChecking}
                                         onClick={onCheckButton}
                                         w={40}
+                                        disabled={checked}
                                     >
                                         CHECK IT
                                     </Button>
@@ -205,14 +228,14 @@ export default function NFTCard(props: NFTCardProps) {
                             {hasAsset && (
                                 <Text color={'green.500'}>
                                     <CheckCircleIcon mr={'5px'} color={'green.500'}/>
-                                    You got this!
+                                    GOTCHA!
                                 </Text>)
                             }
                             {notHasAsset && (
                                 <Tooltip label={"If you believe it is an error, please refresh and retry."}>
                                     <Text color={'red.500'}>
                                         <LockIcon mr={'5px'} color={'red.500'}/>
-                                        Not here...
+                                        ERRRR...?
                                     </Text>
                                 </Tooltip>
                             )}

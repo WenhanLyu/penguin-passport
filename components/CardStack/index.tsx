@@ -1,4 +1,4 @@
-import {VStack, Text, Box} from "@chakra-ui/react";
+import {VStack, Text, Box, useColorModeValue} from "@chakra-ui/react";
 import NFTCard from "../NFTCard";
 import {useEffect, useState} from "react";
 
@@ -9,29 +9,30 @@ const montserrat = Montserrat({subsets: ['latin']});
 
 
 export default function CardStack() {
-    const availability = [false, false, false];
+    const totalTokens = 3;
 
     const [holdsAll, setHoldsAll] = useState(false);
+    const [availableTokens, setAvailableTokens] = useState(0);
 
     const validateFunction = (id: number): void => {
-        if (availability[id] !== undefined)
-            availability[id] = true;
-        console.log(availability.every(Boolean));
-        if (availability.every(Boolean)) {
-            setHoldsAll(true);
-        }
+        setAvailableTokens(availableTokens + 1)
     }
+
+    useEffect(() => {
+        if (availableTokens >= totalTokens)
+            setHoldsAll(true);
+    }, [availableTokens]);
 
 
     return (
         <>
             <VStack spacing={6}>
-                <Box w={'60%'} className={montserrat.className}>
-                    <MintCard canMint={holdsAll}/>
+                <Box className={montserrat.className}>
+                    <MintCard canMint={holdsAll} totalTokens={totalTokens} availableTokens={availableTokens}/>
                 </Box>
 
                 <Box alignContent={'start'} w={'60%'} className={montserrat.className}>
-                    <Text fontSize={'3xl'} as={'b'}>
+                    <Text fontSize={'3xl'} as={'b'} color={useColorModeValue('black', 'white')}>
                         ACTIVE TOKENS
                     </Text>
                 </Box>

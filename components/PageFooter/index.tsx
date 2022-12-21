@@ -4,8 +4,9 @@ export default function PageFooter() {
     return (
         <>
             <Box
-                bg={useColorModeValue('gray.50', 'gray.900')}
-                color={useColorModeValue('gray.700', 'gray.200')}>
+                bg={useColorModeValue('gray.200', 'blackAlpha.500')}
+                color={useColorModeValue('gray.900', 'gray.200')}
+            >
                 <HStack
                     py={4}
                     justify={{base: 'center', md: 'center'}}
@@ -16,6 +17,7 @@ export default function PageFooter() {
                             borderRadius={"full"}
                             boxSize={"64px"}
                             src={"penguin.png"}
+                            alt={'Footer Penguin'}
                         />
                     </HStack>
                     <HStack>

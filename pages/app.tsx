@@ -23,6 +23,7 @@ import MintButton from "../components/MintButton";
 import {Montserrat} from "@next/font/google"
 import CardStack from "../components/CardStack";
 import PageBody from "../components/PageBody";
+import AboutBody from "../components/AboutBody";
 
 
 const montserrat = Montserrat({subsets: ['latin']});
@@ -43,6 +44,16 @@ export default function Home() {
     const [message, setMessage] = useState("");
     const [signedMessage, setSignedMessage] = useState("");
     const [verified, setVerified] = useState<boolean>();
+
+    const [showAbout, setShowAbout] = useState(false);
+
+    const redirectToAbout = () => {
+        setShowAbout(true);
+    };
+
+    const redirectToIndex = () => {
+        setShowAbout(false);
+    };
 
     const handleNetwork = (e: React.ChangeEvent<HTMLInputElement>) => {
         const id = e.target.value;
@@ -128,9 +139,8 @@ export default function Home() {
     return (
         <>
             <Box className={montserrat.className}>
-                <PageHeader/>
-                <PageBody/>
-                {/*<MintButton/>*/}
+                <PageHeader showAbout={redirectToAbout} showIndex={redirectToIndex}/>
+                {showAbout ? <AboutBody/> : <PageBody/>}
                 <PageFooter/>
             </Box>
         </>

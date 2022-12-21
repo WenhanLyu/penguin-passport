@@ -18,20 +18,11 @@ const getLibrary = (provider: ethers.providers.ExternalProvider | ethers.provide
 };
 
 export default function Home() {
-    // useEffect(() => {
-    //   fetch('https://testnets-api.opensea.io/api/v1/asset/0xD000F000Aa1F8accbd5815056Ea32A54777b2Fc4/5567/?account_address=0x854BB98606da22261a81E938436E256acCf0796A')
-    //       .then((res) => res.json())
-    //       .then((data) => console.log(data));
-    // },[]);
-
     return (
         <ChakraProvider theme={theme}>
             <Web3ReactProvider getLibrary={getLibrary}>
                 <App/>
-                {/*<NFTCard contractAddress={'0xD000F000Aa1F8accbd5815056Ea32A54777b2Fc4'} expireDate={new Date()}*/}
-                {/*         rewards={''}/>*/}
             </Web3ReactProvider>
-            {/*<style> @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');</style>*/}
         </ChakraProvider>
     )
 }

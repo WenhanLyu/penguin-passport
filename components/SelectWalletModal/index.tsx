@@ -106,7 +106,7 @@ export default function SelectWalletModal(props: SelectWalletModalProps) {
 
     useEffect(() => {
         onConnectProcessEnd();
-        console.log(active);
+        // console.log(active);
         if (active) {
             setProgressPercent(100);
             closeModal();
