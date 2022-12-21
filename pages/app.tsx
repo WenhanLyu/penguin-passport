@@ -25,7 +25,7 @@ import CardStack from "../components/CardStack";
 import PageBody from "../components/PageBody";
 
 
-// const montserrat = Montserrat();
+const montserrat = Montserrat({subsets: ['latin']});
 
 export default function Home() {
     const {isOpen, onOpen, onClose} = useDisclosure();
@@ -127,12 +127,12 @@ export default function Home() {
 
     return (
         <>
-            <main>
+            <Box className={montserrat.className}>
                 <PageHeader/>
                 <PageBody/>
                 {/*<MintButton/>*/}
                 <PageFooter/>
-            </main>
+            </Box>
         </>
     );
 }

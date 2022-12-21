@@ -2,12 +2,15 @@ import {useWeb3React} from "@web3-react/core";
 import {connectors} from "../../connectors/connector";
 import {useEffect, useState} from "react";
 import {Menu, MenuButton, MenuItem, MenuList} from "@chakra-ui/menu";
-import {Box, Button, HStack, Image, Text, useDisclosure, VStack} from "@chakra-ui/react";
+import {Box, Button, HStack, Image, Text, useColorModeValue, useDisclosure, VStack} from "@chakra-ui/react";
 import {ChevronDownIcon, CloseIcon, CopyIcon, SettingsIcon} from "@chakra-ui/icons";
 import {truncateAddress} from "../../src/utils";
 import {Blockie} from "@web3uikit/web3";
 import SettingsDrawer from "../SettingsDrawer";
 import {Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader, DrawerOverlay} from "@chakra-ui/modal";
+import {Montserrat} from "@next/font/google"
+
+const montserrat = Montserrat({subsets: ['latin']});
 
 export default function ProfileMenu() {
     const {
@@ -47,8 +50,22 @@ export default function ProfileMenu() {
     return (
         <>
             <Menu>
-                <MenuButton as={Button} rightIcon={<ChevronDownIcon/>} h={24} borderRadius={20} w={60}
-                            colorScheme={"facebook"}>
+                <MenuButton
+                    as={Button}
+                    rightIcon={<ChevronDownIcon/>}
+                    rounded={'sm'}
+                    my={1}
+                    mx={[0, 5]}
+                    overflow={'hidden'}
+                    bg={useColorModeValue("teal.100", "white")}
+                    border={'1px'}
+                    borderColor={"black"}
+                    boxShadow={useColorModeValue('6px 6px 0 black', '6px 6px 0 teal')}
+                    color={useColorModeValue("black", "black")}
+                    h={24}
+                    w={60}
+                    fontSize={'md'}
+                >
                     <HStack w="100%" justifyContent="center" spacing={'24px'}>
                         <Blockie seed={account ? account : "0x0000000000000000000000000000000000000000"} size={12}/>
                         <VStack h="100%" justifyContent="center">

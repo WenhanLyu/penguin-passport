@@ -5,7 +5,7 @@ import {useEffect, useState} from "react";
 import {Montserrat} from "@next/font/google"
 import MintCard from "../MintCard";
 
-const montserrat = Montserrat();
+const montserrat = Montserrat({subsets: ['latin']});
 
 
 export default function CardStack() {

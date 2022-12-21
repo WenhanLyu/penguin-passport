@@ -8,7 +8,20 @@ import {
     ModalBody,
     ModalCloseButton,
     Button,
-    Text, CircularProgress, Alert, Grid, GridItem, Progress, Divider, CardBody, CardFooter, Card, Stack, useToast, Box
+    Text,
+    CircularProgress,
+    Alert,
+    Grid,
+    GridItem,
+    Progress,
+    Divider,
+    CardBody,
+    CardFooter,
+    Card,
+    Stack,
+    useToast,
+    Box,
+    useColorModeValue
 } from "@chakra-ui/react";
 import {Image} from "@chakra-ui/react";
 import {useWeb3React} from "@web3-react/core";
@@ -17,7 +30,7 @@ import {useEffect, useState} from "react";
 import {CheckIcon} from "@chakra-ui/icons";
 import {Montserrat} from "@next/font/google"
 
-const montserrat = Montserrat();
+const montserrat = Montserrat({subsets: ['latin']});
 
 interface SelectWalletModalProps {
     isOpen: boolean,
@@ -128,7 +141,7 @@ export default function SelectWalletModal(props: SelectWalletModalProps) {
                                 boxShadow: "none"
                             }}
                         />
-                        <ModalBody>
+                        <ModalBody className={montserrat.className}>
                             <Grid templateAreas={`"nav main"
                                          "nav footer"`}
                                   gridTemplateColumns={'50% 50%'}
@@ -155,10 +168,18 @@ export default function SelectWalletModal(props: SelectWalletModalProps) {
                                     </GridItem>
                                     <GridItem area={"main"}>
                                         <Button
+                                            rounded={'sm'}
+                                            my={5}
+                                            mx={[0, 5]}
+                                            overflow={'hidden'}
+                                            bg={useColorModeValue("white", "white")}
+                                            border={'1px'}
+                                            borderColor={"black"}
+                                            boxShadow={useColorModeValue('6px 6px 0 black', '6px 6px 0 teal')}
+                                            color={useColorModeValue("black", "black")}
                                             variant="outline"
                                             onClick={metaMaskOnClick}
-                                            w="100%"
-                                            borderRadius={"10px"}
+                                            w="90%"
                                         >
                                             <HStack w="100%" justifyContent="center">
                                                 <Image
@@ -192,10 +213,18 @@ export default function SelectWalletModal(props: SelectWalletModalProps) {
                                     <GridItem area={"main"}>
                                         <Button
                                             isLoading
+                                            rounded={'sm'}
+                                            my={5}
+                                            mx={[0, 5]}
+                                            overflow={'hidden'}
+                                            bg={useColorModeValue("white", "white")}
+                                            border={'1px'}
+                                            borderColor={"black"}
+                                            boxShadow={useColorModeValue('6px 6px 0 black', '6px 6px 0 teal')}
+                                            color={useColorModeValue("black", "black")}
                                             variant="outline"
                                             onClick={metaMaskOnClick}
-                                            w="100%"
-                                            borderRadius={"10px"}
+                                            w="90%"
                                         >
                                             <HStack w="100%" justifyContent="center">
                                                 <Image
@@ -227,11 +256,17 @@ export default function SelectWalletModal(props: SelectWalletModalProps) {
                                     </GridItem>
                                     <GridItem area={"main"} alignItems={'end'}>
                                         <Button
-                                            variant="solid"
+                                            my={5}
+                                            mx={[0, 5]}
+                                            overflow={'hidden'}
+                                            bg={useColorModeValue("yellow.200", "yellow")}
+                                            border={'1px'}
+                                            borderColor={"black"}
+                                            boxShadow={useColorModeValue('6px 6px 0 black', '6px 6px 0 teal')}
+                                            color={useColorModeValue("black", "black")}
+                                            variant="outline"
                                             onClick={metaMaskOnClick}
-                                            w="100%"
-                                            borderRadius={"10px"}
-                                            colorScheme={'yellow'}
+                                            w="90%"
                                         >
                                             <HStack w="100%" justifyContent="center">
                                                 <Image
@@ -267,10 +302,17 @@ export default function SelectWalletModal(props: SelectWalletModalProps) {
                                     </GridItem>
                                     <GridItem area={"main"}>
                                         <Button
-                                            colorScheme={'green'}
-                                            variant={"outline"}
-                                            w="100%"
-                                            borderRadius={"10px"}
+                                            my={5}
+                                            mx={[0, 5]}
+                                            overflow={'hidden'}
+                                            bg={useColorModeValue("white", "white")}
+                                            border={'1px'}
+                                            borderColor={"green"}
+                                            boxShadow={useColorModeValue('6px 6px 0 black', '6px 6px 0 green')}
+                                            color={useColorModeValue("black", "black")}
+                                            variant="outline"
+                                            onClick={metaMaskOnClick}
+                                            w="90%"
                                         >
                                             <HStack w="100%" justifyContent="center">
                                                 <CheckIcon color={'green'}/>

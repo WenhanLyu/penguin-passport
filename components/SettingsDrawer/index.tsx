@@ -1,6 +1,22 @@
 import {Drawer, DrawerContent, DrawerBody, DrawerCloseButton, DrawerHeader, DrawerOverlay} from "@chakra-ui/modal";
-import {Box, Button, FormLabel, HStack, Input, Stack, Text, useDisclosure, useToast, VStack} from "@chakra-ui/react";
+import {
+    Box,
+    Button,
+    FormLabel,
+    HStack,
+    Input,
+    Stack,
+    Text,
+    useColorModeValue,
+    useDisclosure,
+    useToast,
+    VStack
+} from "@chakra-ui/react";
 import {useEffect, useState} from "react";
+
+import {Montserrat} from "@next/font/google"
+
+const montserrat = Montserrat({subsets: ['latin']});
 
 interface SettingsDrawerProps {
     isOpen: boolean,
@@ -21,7 +37,7 @@ export default function SettingsDrawer(props: SettingsDrawerProps) {
         <>
             <Drawer isOpen={isOpen} onClose={onClose}>
                 <DrawerOverlay/>
-                <DrawerContent>
+                <DrawerContent className={montserrat.className}>
                     <DrawerCloseButton/>
                     <DrawerHeader>
                         Profile Settings
@@ -32,7 +48,21 @@ export default function SettingsDrawer(props: SettingsDrawerProps) {
                                 <Text fontSize={'2xl'} as={'b'}>PenguinID</Text>
                                 <VStack align={'left'}>
                                     <Text size={'sm'}>Complete this to get your Penguin Passport verified.</Text>
-                                    <Button colorScheme={'blue'} borderRadius={'10px'} w={'200px'}>Get Verified</Button>
+                                    <Button
+                                        rounded={'sm'}
+                                        my={1}
+                                        mx={[0, 5]}
+                                        overflow={'hidden'}
+                                        bg={useColorModeValue("blue.500", "white")}
+                                        border={'1px'}
+                                        borderColor={"black"}
+                                        boxShadow={useColorModeValue('6px 6px 0 black', '6px 6px 0 darkblue')}
+                                        color={useColorModeValue("black", "black")}
+                                        w={'200px'}
+                                    >
+                                        Get
+                                        Verified
+                                    </Button>
                                 </VStack>
                             </Box>
 
@@ -64,16 +94,22 @@ export default function SettingsDrawer(props: SettingsDrawerProps) {
                                             <Input name='email' placeholder='penguin@penguinpassport.com'
                                                    type={'email'} defaultValue={email ? email : ''}/>
                                         </Box>
-                                        <Box>
-                                            <Button colorScheme={'teal'}
-                                                    borderRadius={'10px'}
-                                                    type={'submit'}
-                                                    w={'100px'}
-                                                    isLoading={buttonLoading}
-                                            >
-                                                Submit
-                                            </Button>
-                                        </Box>
+                                        <Button
+                                            rounded={'sm'}
+                                            my={1}
+                                            mx={[0, 5]}
+                                            overflow={'hidden'}
+                                            bg={useColorModeValue("teal.100", "white")}
+                                            border={'1px'}
+                                            borderColor={"black"}
+                                            boxShadow={useColorModeValue('6px 6px 0 black', '6px 6px 0 teal')}
+                                            color={useColorModeValue("black", "black")}
+                                            type={'submit'}
+                                            w={'100px'}
+                                            isLoading={buttonLoading}
+                                        >
+                                            Submit
+                                        </Button>
                                     </VStack>
                                 </form>
                             </Box>

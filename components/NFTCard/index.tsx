@@ -5,7 +5,7 @@ import {useEffect, useState} from "react";
 import {CheckCircleIcon, CheckIcon, LockIcon} from "@chakra-ui/icons";
 import {Montserrat} from "@next/font/google"
 
-const montserrat = Montserrat();
+const montserrat = Montserrat({subsets: ['latin']});
 
 interface NFTCardProps {
     cardID: number,
@@ -57,27 +57,35 @@ export default function NFTCard(props: NFTCardProps) {
     return (
         <>
             <HStack
-                borderRadius={'2xl'}
-                boxShadow={'lg'}
-                w={'60%'}
-                justifyContent={'center'}
-                mt={'20px'}
-                h={'200px'}
+                rounded={'sm'}
+                my={5}
+                mx={[0, 5]}
+                overflow={'hidden'}
+                bg={useColorModeValue("white", "gray.300")}
+                border={'1px'}
+                borderColor={"black"}
+                boxShadow={useColorModeValue('6px 6px 0 teal', '6px 6px 0 white')}
+                width={"60%"}
                 className={montserrat.className}
-                bg={useColorModeValue('blackAlpha.200', 'blackAlpha.50')}
-                color={useColorModeValue('gray.700', 'gray.200')}
             >
                 <Box w={'80%'} justifyContent={'space-between'}>
                     <HStack mt={'20px'} mb={'20px'}>
                         <Image
-                            borderRadius={'lg'}
+                            rounded={'sm'}
+                            bg={useColorModeValue("white", "white")}
+                            border={'1px'}
+                            borderColor={"black"}
+                            boxShadow={useColorModeValue('6px 6px 0 black', '6px 6px 0 teal')}
+                            color={useColorModeValue("black", "black")}
                             boxSize={'150px'}
                             src={imageUrl}
                             alt={contractName}
                             ml={'20px'}
                             mr={'20px'}
                         />
-                        <Box>
+                        <Box
+                            color={"black"}
+                        >
                             <VStack alignItems={'flex-start'}>
                                 <Text fontSize={'2xl'} as={'b'}>{contractName}</Text>
                                 <Text noOfLines={3}>
@@ -93,9 +101,16 @@ export default function NFTCard(props: NFTCardProps) {
                             {isActive ? (
                                 <>
                                     <Badge
+                                        rounded={'sm'}
+                                        my={1}
+                                        mx={[0, 5]}
+                                        overflow={'hidden'}
+                                        bg={useColorModeValue("green", "green")}
+                                        border={'1px'}
+                                        borderColor={"black"}
+                                        boxShadow={useColorModeValue('3px 3px 0 black', '3px 3px 0 teal')}
+                                        color={useColorModeValue("white", "white")}
                                         variant={'solid'}
-                                        colorScheme={'green'}
-                                        borderRadius={'md'}
                                         alignContent={'center'}
                                     >
                                         ACTIVE NOW
@@ -103,7 +118,19 @@ export default function NFTCard(props: NFTCardProps) {
                                 </>
                             ) : (
                                 <>
-                                    <Badge variant={'solid'} colorScheme={'red'} borderRadius={'md'}>
+                                    <Badge
+                                        rounded={'sm'}
+                                        my={1}
+                                        mx={[0, 5]}
+                                        overflow={'hidden'}
+                                        bg={useColorModeValue("red", "red")}
+                                        border={'1px'}
+                                        borderColor={"black"}
+                                        boxShadow={useColorModeValue('3px 3px 0 black', '3px 3px 0 orange')}
+                                        color={useColorModeValue("white", "white")}
+                                        variant={'solid'}
+                                        alignContent={'center'}
+                                    >
                                         EXPIRED
                                     </Badge>
                                 </>
@@ -114,8 +141,15 @@ export default function NFTCard(props: NFTCardProps) {
                             {(isActive && account) && (
                                 <>
                                     <Button
-                                        colorScheme={'teal'}
-                                        borderRadius={'lg'}
+                                        rounded={'sm'}
+                                        my={1}
+                                        mx={[0, 5]}
+                                        overflow={'hidden'}
+                                        bg={useColorModeValue("white", "white")}
+                                        border={'1px'}
+                                        borderColor={"black"}
+                                        boxShadow={useColorModeValue('6px 6px 0 black', '6px 6px 0 teal')}
+                                        color={useColorModeValue("black", "black")}
                                         isLoading={isChecking}
                                         onClick={onCheckButton}
                                         w={40}
@@ -128,8 +162,15 @@ export default function NFTCard(props: NFTCardProps) {
                             {!account && (
                                 <>
                                     <Button
-                                        colorScheme={'red'}
-                                        borderRadius={'lg'}
+                                        rounded={'sm'}
+                                        my={1}
+                                        mx={[0, 5]}
+                                        overflow={'hidden'}
+                                        bg={useColorModeValue("white", "white")}
+                                        border={'1px'}
+                                        borderColor={"red"}
+                                        boxShadow={useColorModeValue('6px 6px 0 black', '6px 6px 0 teal')}
+                                        color={useColorModeValue("red", "red")}
                                         disabled={true}
                                         w={40}
                                     >
@@ -141,8 +182,15 @@ export default function NFTCard(props: NFTCardProps) {
                             {(account && !isActive) && (
                                 <>
                                     <Button
-                                        colorScheme={'red'}
-                                        borderRadius={'lg'}
+                                        rounded={'sm'}
+                                        my={1}
+                                        mx={[0, 5]}
+                                        overflow={'hidden'}
+                                        bg={useColorModeValue("white", "white")}
+                                        border={'1px'}
+                                        borderColor={"red"}
+                                        boxShadow={useColorModeValue('6px 6px 0 black', '6px 6px 0 teal')}
+                                        color={useColorModeValue("red", "red")}
                                         disabled={true}
                                         w={40}
                                     >
@@ -168,12 +216,12 @@ export default function NFTCard(props: NFTCardProps) {
                                     </Text>
                                 </Tooltip>
                             )}
-                            {!account && !active && (
-                                <Text color={'red.500'}>
-                                    <LockIcon mr={'5px'} color={'red.500'}/>
-                                    Connect wallet first
-                                </Text>
-                            )}
+                            {/*{!account && !active && (*/}
+                            {/*    <Text color={'red.500'}>*/}
+                            {/*        <LockIcon mr={'5px'} color={'red.500'}/>*/}
+                            {/*        NOT NOW*/}
+                            {/*    </Text>*/}
+                            {/*)}*/}
                         </Box>
                     </VStack>
                 </Box>
