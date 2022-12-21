@@ -78,6 +78,11 @@ export default function AboutBody() {
                             </Text>
                             .
                         </Text>
+                        <Text color={'black'} fontSize={'xs'}>
+                            <br/>
+                            <br/>
+                            Photo by Resource Database™ on Unsplash
+                        </Text>
                     </VStack>
                     <Hide below={'1080px'}>
                         <VStack w={'500px'} mb={'1px'} borderColor="black">

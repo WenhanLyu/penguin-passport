@@ -17,6 +17,7 @@ export default function PageHeader(props: PageHeaderProps) {
                         borderRadius={"full"}
                         boxSize={"128px"}
                         src={"penguin.png"}
+                        onClick={showIndex}
                     />
                     <Text fontSize={'3xl'} as={'b'}>
                         PENGUIN PASSPORT

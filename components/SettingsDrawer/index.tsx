@@ -15,6 +15,7 @@ import {
 import {useEffect, useState} from "react";
 
 import {Montserrat} from "@next/font/google"
+import {CheckCircleIcon} from "@chakra-ui/icons";
 
 const montserrat = Montserrat({subsets: ['latin']});
 
@@ -59,10 +60,12 @@ export default function SettingsDrawer(props: SettingsDrawerProps) {
                                         boxShadow={useColorModeValue('6px 6px 0 black', '6px 6px 0 darkblue')}
                                         color={useColorModeValue("black", "black")}
                                         w={'200px'}
+                                        disabled={true}
                                     >
                                         Get
                                         Verified
                                     </Button>
+                                    <Text fontSize={'xs'}>Available soon</Text>
                                 </VStack>
                             </Box>
 
@@ -78,9 +81,30 @@ export default function SettingsDrawer(props: SettingsDrawerProps) {
                                         profileToast({
                                             title: "Profile submitted.",
                                             status: "success",
-                                            duration: 5000,
                                             isClosable: true,
+                                            position: "top",
+                                            render: () => (
+                                                <>
+                                                    <Box
+                                                        rounded={'sm'}
+                                                        overflow={'hidden'}
+                                                        bg={useColorModeValue("green", "green.500")}
+                                                        border={'1px'}
+                                                        borderColor={"green"}
+                                                        boxShadow={useColorModeValue('6px 6px 0 black', '6px 6px 0 teal')}
+                                                        color={useColorModeValue("white", "white")}
+                                                        // w={40}
+                                                        className={montserrat.className}
+                                                    >
+                                                        <Text fontSize={'xl'} mx={'10px'}>
+                                                            <CheckCircleIcon mr={'5px'} fontSize={'lg'}/>
+                                                            Profile submitted.
+                                                        </Text>
+                                                    </Box>
+                                                </>
+                                            ),
                                         });
+                                        onClose();
                                     }}
                                 >
                                     <VStack align={'left'} spacing={'24px'}>

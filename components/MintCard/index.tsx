@@ -1,7 +1,9 @@
-import {Box, Heading, Hide, HStack, Img, Progress, Text, useColorModeValue, VStack} from "@chakra-ui/react";
+import {Box, Heading, Hide, HStack, Img, Progress, Text, useColorModeValue, useToast, VStack} from "@chakra-ui/react";
 
 import {Montserrat} from "@next/font/google"
 import MintButton from "../MintButton";
+import {useEffect} from "react";
+import {CheckCircleIcon, WarningIcon} from "@chakra-ui/icons";
 
 const montserrat = Montserrat({subsets: ['latin']});
 
@@ -13,6 +15,39 @@ interface MintCardProps {
 
 export default function MintCard(props: MintCardProps) {
     const {canMint, totalTokens, availableTokens} = props;
+
+    const canMintToast = useToast();
+
+    useEffect(() => {
+        if (canMint) {
+            canMintToast({
+                title: "Ready to mint!",
+                status: "success",
+                isClosable: true,
+                position: "top",
+                render: () => (
+                    <>
+                        <Box
+                            rounded={'sm'}
+                            overflow={'hidden'}
+                            bg={useColorModeValue("green", "green.500")}
+                            border={'1px'}
+                            borderColor={"green"}
+                            boxShadow={useColorModeValue('6px 6px 0 black', '6px 6px 0 teal')}
+                            color={useColorModeValue("white", "white")}
+                            // w={40}
+                            className={montserrat.className}
+                        >
+                            <Text fontSize={'xl'} mx={'10px'}>
+                                <CheckCircleIcon mr={'5px'} fontSize={'lg'}/>
+                                Ready to mint!
+                            </Text>
+                        </Box>
+                    </>
+                ),
+            });
+        }
+    }, [canMint])
 
 
     return (
@@ -57,13 +92,14 @@ export default function MintCard(props: MintCardProps) {
                         Just check them manually, then you will see the mint button.
                     </Text>
                     <MintButton available={canMint}/>
-                    <Progress size={'sm'}
-                              value={availableTokens / totalTokens * 100}
-                              colorScheme={(availableTokens == totalTokens) ? 'green' : 'gray'}
-                              w={'50%'}
-                              border={'1px'}
-                              borderColor={"black"}
-                              boxShadow={useColorModeValue('2px 2px 0 black', '2px 2px 0 black')}
+                    <Progress
+                        size={'sm'}
+                        value={availableTokens / totalTokens * 100}
+                        colorScheme={(availableTokens == totalTokens) ? 'green' : 'gray'}
+                        w={'50%'}
+                        border={'1px'}
+                        borderColor={"black"}
+                        boxShadow={useColorModeValue('2px 2px 0 black', '2px 2px 0 black')}
                     />
                     <Text fontSize={'sm'} color={'black'}>PROGRESS: {availableTokens}/{totalTokens}</Text>
                 </VStack>

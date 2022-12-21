@@ -21,13 +21,13 @@ import {
     Stack,
     useToast,
     Box,
-    useColorModeValue
+    useColorModeValue, AlertIcon
 } from "@chakra-ui/react";
 import {Image} from "@chakra-ui/react";
 import {useWeb3React} from "@web3-react/core";
 import {connectors} from "../../connectors/connector";
 import {useEffect, useState} from "react";
-import {CheckIcon} from "@chakra-ui/icons";
+import {CheckIcon, WarningIcon} from "@chakra-ui/icons";
 import {Montserrat} from "@next/font/google"
 
 const montserrat = Montserrat({subsets: ['latin']});
@@ -63,6 +63,27 @@ export default function SelectWalletModal(props: SelectWalletModalProps) {
                 title: "Metamask extension is not installed.",
                 status: "error",
                 isClosable: true,
+                position: "top",
+                render: () => (
+                    <>
+                        <Box
+                            rounded={'sm'}
+                            overflow={'hidden'}
+                            bg={useColorModeValue("red", "red.500")}
+                            border={'1px'}
+                            borderColor={"red"}
+                            boxShadow={useColorModeValue('6px 6px 0 black', '6px 6px 0 black')}
+                            color={useColorModeValue("white", "white")}
+                            // w={40}
+                            className={montserrat.className}
+                        >
+                            <Text fontSize={'xl'} mx={'10px'}>
+                                <WarningIcon mr={'5px'} fontSize={'lg'}/>
+                                MetaMask extension not found
+                            </Text>
+                        </Box>
+                    </>
+                ),
             });
             firstStep();
             return;
@@ -163,7 +184,15 @@ export default function SelectWalletModal(props: SelectWalletModalProps) {
                                         </Stack>
                                         {/*<Divider mt={'10px'}/>*/}
                                         <Stack mt={'20%'} width={'60%'}>
-                                            <Progress size={'sm'} value={progressPercent}/>
+                                            <Progress
+                                                size={'sm'}
+                                                value={progressPercent}
+                                                colorScheme={'green'}
+                                                w={'100%'}
+                                                border={'1px'}
+                                                borderColor={"black"}
+                                                boxShadow={useColorModeValue('2px 2px 0 black', '2px 2px 0 black')}
+                                            />
                                         </Stack>
                                     </GridItem>
                                     <GridItem area={"main"}>
@@ -207,7 +236,15 @@ export default function SelectWalletModal(props: SelectWalletModalProps) {
                                         </Stack>
                                         {/*<Divider mt={'10px'}/>*/}
                                         <Stack mt={'20%'} width={'60%'}>
-                                            <Progress size={'sm'} value={progressPercent}/>
+                                            <Progress
+                                                size={'sm'}
+                                                value={progressPercent}
+                                                colorScheme={'green'}
+                                                w={'100%'}
+                                                border={'1px'}
+                                                borderColor={"black"}
+                                                boxShadow={useColorModeValue('2px 2px 0 black', '2px 2px 0 black')}
+                                            />
                                         </Stack>
                                     </GridItem>
                                     <GridItem area={"main"}>
@@ -251,7 +288,15 @@ export default function SelectWalletModal(props: SelectWalletModalProps) {
                                         </Stack>
                                         {/*<Divider mt={'10px'}/>*/}
                                         <Stack mt={'20%'} width={'60%'}>
-                                            <Progress size={'sm'} value={progressPercent}/>
+                                            <Progress
+                                                size={'sm'}
+                                                value={progressPercent}
+                                                colorScheme={'green'}
+                                                w={'100%'}
+                                                border={'1px'}
+                                                borderColor={"black"}
+                                                boxShadow={useColorModeValue('2px 2px 0 black', '2px 2px 0 black')}
+                                            />
                                         </Stack>
                                     </GridItem>
                                     <GridItem area={"main"} alignItems={'end'}>
@@ -297,7 +342,15 @@ export default function SelectWalletModal(props: SelectWalletModalProps) {
                                         </Stack>
                                         {/*<Divider mt={'10px'}/>*/}
                                         <Stack mt={'20%'} width={'60%'}>
-                                            <Progress size={'sm'} value={progressPercent}/>
+                                            <Progress
+                                                size={'sm'}
+                                                value={progressPercent}
+                                                colorScheme={'green'}
+                                                w={'100%'}
+                                                border={'1px'}
+                                                borderColor={"black"}
+                                                boxShadow={useColorModeValue('2px 2px 0 black', '2px 2px 0 black')}
+                                            />
                                         </Stack>
                                     </GridItem>
                                     <GridItem area={"main"}>
