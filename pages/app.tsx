@@ -19,6 +19,11 @@ import {toHex, truncateAddress} from "../src/utils";
 import Connect from "../components/Connect";
 import PageFooter from "../components/PageFooter";
 import PageHeader from "../components/PageHeader";
+import MintButton from "../components/MintButton";
+import {Montserrat} from "@next/font/google"
+import CardStack from "../components/CardStack";
+
+// const montserrat = Montserrat();
 
 export default function Home() {
     const {isOpen, onOpen, onClose} = useDisclosure();
@@ -120,8 +125,12 @@ export default function Home() {
 
     return (
         <>
-            <PageHeader/>
-            <PageFooter/>
+            <main>
+                <PageHeader/>
+                <CardStack/>
+                {/*<MintButton/>*/}
+                <PageFooter/>
+            </main>
         </>
     );
 }

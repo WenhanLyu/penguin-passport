@@ -106,8 +106,10 @@ export default function SelectWalletModal(props: SelectWalletModalProps) {
     useEffect(() => {
         onConnectProcessEnd();
         if (error) {
-            failureStep();
-            setHasErrorInConnect(true);
+            if (inConnectStep) {
+                failureStep();
+                setHasErrorInConnect(true);
+            }
         }
     }, [error])
 
