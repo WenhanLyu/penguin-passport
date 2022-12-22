@@ -3,7 +3,6 @@ import { Web3ReactProvider } from "@web3-react/core";
 import { ethers } from "ethers";
 import { ChakraProvider } from "@chakra-ui/react";
 import App from "./app";
-import theme from "./theme";
 
 const getLibrary = (
   provider:
@@ -22,7 +21,7 @@ export default function Home() {
         <title>Penguin Passport</title>
         <meta property="og:title" content="Penguin Passport" key="title" />
       </Head>
-      <ChakraProvider theme={theme}>
+      <ChakraProvider>
         <Web3ReactProvider getLibrary={getLibrary}>
           <App />
         </Web3ReactProvider>
