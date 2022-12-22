@@ -28,6 +28,10 @@ export default function MintCard(props: MintCardProps) {
 
   const canMintToast = useToast();
 
+  const colorMode = (str1: string, str2: string) =>
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    useColorModeValue(str1, str2);
+
   useEffect(() => {
     if (canMint) {
       canMintToast({
@@ -40,11 +44,11 @@ export default function MintCard(props: MintCardProps) {
             <Box
               rounded={"sm"}
               overflow={"hidden"}
-              bg={useColorModeValue("green", "green.500")}
+              bg={colorMode("green", "green.500")}
               border={"1px"}
               borderColor={"green"}
-              boxShadow={useColorModeValue("6px 6px 0 black", "6px 6px 0 teal")}
-              color={useColorModeValue("white", "white")}
+              boxShadow={colorMode("6px 6px 0 black", "6px 6px 0 teal")}
+              color={colorMode("white", "white")}
               // w={40}
               className={montserrat.className}
             >

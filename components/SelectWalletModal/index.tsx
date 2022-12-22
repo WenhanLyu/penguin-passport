@@ -50,6 +50,10 @@ export default function SelectWalletModal(props: SelectWalletModalProps) {
     window.localStorage.setItem("provider", type);
   };
 
+  const colorMode = (str1: string, str2: string) =>
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    useColorModeValue(str1, str2);
+
   const metaMaskOnClick = () => {
     if (!metamaskInstalled) {
       metamaskErrorToast({
@@ -62,14 +66,11 @@ export default function SelectWalletModal(props: SelectWalletModalProps) {
             <Box
               rounded={"sm"}
               overflow={"hidden"}
-              bg={useColorModeValue("red", "red.500")}
+              bg={colorMode("red", "red.500")}
               border={"1px"}
               borderColor={"red"}
-              boxShadow={useColorModeValue(
-                "6px 6px 0 black",
-                "6px 6px 0 black"
-              )}
-              color={useColorModeValue("white", "white")}
+              boxShadow={colorMode("6px 6px 0 black", "6px 6px 0 black")}
+              color={colorMode("white", "white")}
               // w={40}
               className={montserrat.className}
             >
@@ -193,7 +194,7 @@ export default function SelectWalletModal(props: SelectWalletModalProps) {
                           w={"100%"}
                           border={"1px"}
                           borderColor={"black"}
-                          boxShadow={useColorModeValue(
+                          boxShadow={colorMode(
                             "2px 2px 0 black",
                             "2px 2px 0 black"
                           )}
@@ -206,14 +207,14 @@ export default function SelectWalletModal(props: SelectWalletModalProps) {
                         my={5}
                         mx={[0, 5]}
                         overflow={"hidden"}
-                        bg={useColorModeValue("white", "white")}
+                        bg={colorMode("white", "white")}
                         border={"1px"}
                         borderColor={"black"}
-                        boxShadow={useColorModeValue(
+                        boxShadow={colorMode(
                           "6px 6px 0 black",
                           "6px 6px 0 teal"
                         )}
-                        color={useColorModeValue("black", "black")}
+                        color={colorMode("black", "black")}
                         variant="outline"
                         onClick={metaMaskOnClick}
                         w="90%"
@@ -254,7 +255,7 @@ export default function SelectWalletModal(props: SelectWalletModalProps) {
                           w={"100%"}
                           border={"1px"}
                           borderColor={"black"}
-                          boxShadow={useColorModeValue(
+                          boxShadow={colorMode(
                             "2px 2px 0 black",
                             "2px 2px 0 black"
                           )}
@@ -268,14 +269,14 @@ export default function SelectWalletModal(props: SelectWalletModalProps) {
                         my={5}
                         mx={[0, 5]}
                         overflow={"hidden"}
-                        bg={useColorModeValue("white", "white")}
+                        bg={colorMode("white", "white")}
                         border={"1px"}
                         borderColor={"black"}
-                        boxShadow={useColorModeValue(
+                        boxShadow={colorMode(
                           "6px 6px 0 black",
                           "6px 6px 0 teal"
                         )}
-                        color={useColorModeValue("black", "black")}
+                        color={colorMode("black", "black")}
                         variant="outline"
                         onClick={metaMaskOnClick}
                         w="90%"
@@ -315,7 +316,7 @@ export default function SelectWalletModal(props: SelectWalletModalProps) {
                           w={"100%"}
                           border={"1px"}
                           borderColor={"black"}
-                          boxShadow={useColorModeValue(
+                          boxShadow={colorMode(
                             "2px 2px 0 black",
                             "2px 2px 0 black"
                           )}
@@ -327,14 +328,14 @@ export default function SelectWalletModal(props: SelectWalletModalProps) {
                         my={5}
                         mx={[0, 5]}
                         overflow={"hidden"}
-                        bg={useColorModeValue("yellow.200", "yellow")}
+                        bg={colorMode("yellow.200", "yellow")}
                         border={"1px"}
                         borderColor={"black"}
-                        boxShadow={useColorModeValue(
+                        boxShadow={colorMode(
                           "6px 6px 0 black",
                           "6px 6px 0 teal"
                         )}
-                        color={useColorModeValue("black", "black")}
+                        color={colorMode("black", "black")}
                         variant="outline"
                         onClick={metaMaskOnClick}
                         w="90%"
@@ -384,7 +385,7 @@ export default function SelectWalletModal(props: SelectWalletModalProps) {
                           w={"100%"}
                           border={"1px"}
                           borderColor={"black"}
-                          boxShadow={useColorModeValue(
+                          boxShadow={colorMode(
                             "2px 2px 0 black",
                             "2px 2px 0 black"
                           )}
@@ -396,14 +397,14 @@ export default function SelectWalletModal(props: SelectWalletModalProps) {
                         my={5}
                         mx={[0, 5]}
                         overflow={"hidden"}
-                        bg={useColorModeValue("white", "white")}
+                        bg={colorMode("white", "white")}
                         border={"1px"}
                         borderColor={"green"}
-                        boxShadow={useColorModeValue(
+                        boxShadow={colorMode(
                           "6px 6px 0 black",
                           "6px 6px 0 green"
                         )}
-                        color={useColorModeValue("black", "black")}
+                        color={colorMode("black", "black")}
                         variant="outline"
                         onClick={metaMaskOnClick}
                         w="90%"
