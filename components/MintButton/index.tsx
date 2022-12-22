@@ -58,8 +58,12 @@ export default function MintButton(props: MintButtonProps) {
         setInProgress(false);
       })
       .on("error", function (error: any, receipt: any) {
+        let errorMsg = error.message;
+        if (errorMsg.indexOf("{") > 0) {
+          errorMsg = errorMsg.substring(0, errorMsg.indexOf("{") - 1);
+        }
         setHasError(true);
-        setErrorText(error.message);
+        setErrorText(errorMsg);
         setTransactionCompleted(true);
         setInProgress(false);
       });
@@ -104,9 +108,27 @@ export default function MintButton(props: MintButtonProps) {
         )}
         {hasError && (
           <>
+            {transactionHash && (
+              <Text color={"red"}>
+                Transaction hash
+                <IconButton
+                  aria-label={"COPY HASH"}
+                  onClick={() => {
+                    navigator.clipboard.writeText(transactionHash);
+                  }}
+                  icon={<CopyIcon color={colorMode("red", "red")} />}
+                  variant={"outline"}
+                  ml={"2px"}
+                  h={"100%"}
+                  borderColor={"whiteAlpha.100"}
+                />
+                <br />
+                {transactionHash}
+              </Text>
+            )}
             <Text color={"red"} noOfLines={1}>
               <WarningIcon mr={"2px"} />
-              ERROR: {errorText}
+              {errorText}
             </Text>
           </>
         )}
