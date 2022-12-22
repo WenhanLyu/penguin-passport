@@ -76,6 +76,10 @@ export default function NFTCard(props: NFTCardProps) {
       });
   };
 
+  const colorMode = (str1: string, str2: string) =>
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    useColorModeValue(str1, str2);
+
   return (
     <>
       <HStack
@@ -134,14 +138,11 @@ export default function NFTCard(props: NFTCardProps) {
                     my={1}
                     mx={[0, 5]}
                     overflow={"hidden"}
-                    bg={useColorModeValue("green", "green")}
+                    bg={colorMode("green", "green")}
                     border={"1px"}
                     borderColor={"black"}
-                    boxShadow={useColorModeValue(
-                      "3px 3px 0 black",
-                      "3px 3px 0 teal"
-                    )}
-                    color={useColorModeValue("white", "white")}
+                    boxShadow={colorMode("3px 3px 0 black", "3px 3px 0 teal")}
+                    color={colorMode("white", "white")}
                     variant={"solid"}
                     alignContent={"center"}
                   >
@@ -155,14 +156,11 @@ export default function NFTCard(props: NFTCardProps) {
                     my={1}
                     mx={[0, 5]}
                     overflow={"hidden"}
-                    bg={useColorModeValue("red", "red")}
+                    bg={colorMode("red", "red")}
                     border={"1px"}
                     borderColor={"black"}
-                    boxShadow={useColorModeValue(
-                      "3px 3px 0 black",
-                      "3px 3px 0 orange"
-                    )}
-                    color={useColorModeValue("white", "white")}
+                    boxShadow={colorMode("3px 3px 0 black", "3px 3px 0 orange")}
+                    color={colorMode("white", "white")}
                     variant={"solid"}
                     alignContent={"center"}
                   >
@@ -179,14 +177,11 @@ export default function NFTCard(props: NFTCardProps) {
                     my={1}
                     mx={[0, 5]}
                     overflow={"hidden"}
-                    bg={useColorModeValue("white", "white")}
+                    bg={colorMode("white", "white")}
                     border={"1px"}
                     borderColor={"black"}
-                    boxShadow={useColorModeValue(
-                      "6px 6px 0 black",
-                      "6px 6px 0 teal"
-                    )}
-                    color={useColorModeValue("black", "black")}
+                    boxShadow={colorMode("6px 6px 0 black", "6px 6px 0 teal")}
+                    color={colorMode("black", "black")}
                     isLoading={isChecking}
                     onClick={onCheckButton}
                     w={40}
@@ -204,14 +199,11 @@ export default function NFTCard(props: NFTCardProps) {
                     my={1}
                     mx={[0, 5]}
                     overflow={"hidden"}
-                    bg={useColorModeValue("white", "white")}
+                    bg={colorMode("white", "white")}
                     border={"1px"}
                     borderColor={"red"}
-                    boxShadow={useColorModeValue(
-                      "6px 6px 0 black",
-                      "6px 6px 0 teal"
-                    )}
-                    color={useColorModeValue("red", "red")}
+                    boxShadow={colorMode("6px 6px 0 black", "6px 6px 0 teal")}
+                    color={colorMode("red", "red")}
                     disabled={true}
                     w={40}
                   >
@@ -227,14 +219,11 @@ export default function NFTCard(props: NFTCardProps) {
                     my={1}
                     mx={[0, 5]}
                     overflow={"hidden"}
-                    bg={useColorModeValue("white", "white")}
+                    bg={colorMode("white", "white")}
                     border={"1px"}
                     borderColor={"red"}
-                    boxShadow={useColorModeValue(
-                      "6px 6px 0 black",
-                      "6px 6px 0 teal"
-                    )}
-                    color={useColorModeValue("red", "red")}
+                    boxShadow={colorMode("6px 6px 0 black", "6px 6px 0 teal")}
+                    color={colorMode("red", "red")}
                     disabled={true}
                     w={40}
                   >

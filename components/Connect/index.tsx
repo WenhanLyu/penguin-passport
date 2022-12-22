@@ -17,6 +17,10 @@ export default function Connect() {
   const { library, chainId, account, activate, deactivate, active } =
     useWeb3React();
 
+  const bg = useColorModeValue("teal", "white");
+  const boxShadow = useColorModeValue("6px 6px 0 black", "6px 6px 0 teal");
+  const color = useColorModeValue("gray.50", "black");
+
   return (
     <>
       <Box className={montserrat.className}>
@@ -26,11 +30,11 @@ export default function Connect() {
             my={1}
             mx={[0, 5]}
             overflow={"hidden"}
-            bg={useColorModeValue("teal", "white")}
+            bg={bg}
             border={"1px"}
             borderColor={"black"}
-            boxShadow={useColorModeValue("6px 6px 0 black", "6px 6px 0 teal")}
-            color={useColorModeValue("gray.50", "black")}
+            boxShadow={boxShadow}
+            color={color}
             onClick={onOpen}
             h={24}
             w={60}
