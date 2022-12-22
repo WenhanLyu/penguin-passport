@@ -7,7 +7,7 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useWeb3React } from "@web3-react/core";
-import { TestToadzABI, TestToadzAddress } from "../../src/utils";
+import { PenguinABI, PenguinAddress } from "../../src/utils";
 import { CheckCircleIcon, CopyIcon, WarningIcon } from "@chakra-ui/icons";
 
 interface MintButtonProps {
@@ -39,10 +39,8 @@ export default function MintButton(props: MintButtonProps) {
 
     Contract.setProvider(provider);
 
-    let test = new Contract(TestToadzABI, TestToadzAddress);
-    // test.methods.mint(account, 1).send({from: account}).catch((e) => {
-    //     console.log(e);
-    // });
+    // let test = new Contract(TestToadzABI, TestToadzAddress);
+    let test = new Contract(PenguinABI, PenguinAddress);
 
     let methods = test.methods;
     methods

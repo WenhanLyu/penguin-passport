@@ -44,31 +44,29 @@ export default function CardStack() {
         <NFTCard
           cardID={0}
           contractAddress={"0xd000f000aa1f8accbd5815056ea32a54777b2fc4"}
-          contractName={"TestToadz Goerli"}
+          contractName={"TestToadz Goerli 1"}
           imageUrl={
             "https://i.seadn.io/gae/L5oBVXn05eG1YLb8hbQH7N23rdxsFXtgnjQaiNM6m7J2lrE8Z_xAG9EJF0NAZLlBue6UMZD24jWgdkrWcIFkWhib8nif9oxbu4QXSlI?w=500&auto=format"
           }
           description={
-            "Mint up to 3 TestToadz a time (with a maximum of 20 per account) by clicking Connect to Web3 (select appropriate testnet) on the appropriate EtherScan testnet page listed above, entering a quantity between 1 and 3 in the mint(...) function, clicking Write and confirming the transaction."
+            "You just need one TestToadz token in your wallet to complete all the check."
           }
           validateFunction={validateFunction}
         />
         <NFTCard
           cardID={1}
           contractAddress={"0xd000f000aa1f8accbd5815056ea32a54777b2fc4"}
-          contractName={"TestToadz Goerli"}
+          contractName={"TestToadz Goerli 2"}
           imageUrl={
             "https://i.seadn.io/gae/L5oBVXn05eG1YLb8hbQH7N23rdxsFXtgnjQaiNM6m7J2lrE8Z_xAG9EJF0NAZLlBue6UMZD24jWgdkrWcIFkWhib8nif9oxbu4QXSlI?w=500&auto=format"
           }
-          description={
-            "Mint up to 3 TestToadz a time (with a maximum of 20 per account) by clicking Connect to Web3 (select appropriate testnet) on the appropriate EtherScan testnet page listed above, entering a quantity between 1 and 3 in the mint(...) function, clicking Write and confirming the transaction."
-          }
+          description={"So by far 1 SoulBoundPenguin V2 == 1 TestToadz!"}
           validateFunction={validateFunction}
         />
         <NFTCard
           cardID={2}
           contractAddress={"0xd000f000aa1f8accbd5815056ea32a54777b2fc4"}
-          contractName={"TestToadz Goerli"}
+          contractName={"TestToadz Goerli 3"}
           imageUrl={
             "https://i.seadn.io/gae/L5oBVXn05eG1YLb8hbQH7N23rdxsFXtgnjQaiNM6m7J2lrE8Z_xAG9EJF0NAZLlBue6UMZD24jWgdkrWcIFkWhib8nif9oxbu4QXSlI?w=500&auto=format"
           }
