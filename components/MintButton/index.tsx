@@ -26,6 +26,10 @@ export default function MintButton(props: MintButtonProps) {
 
   const { available } = props;
 
+  const colorMode = (str1: string, str2: string) =>
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    useColorModeValue(str1, str2);
+
   const onClick = async () => {
     setInProgress(true);
     const provider = window.ethereum;
@@ -88,7 +92,7 @@ export default function MintButton(props: MintButtonProps) {
               onClick={() => {
                 navigator.clipboard.writeText(transactionHash);
               }}
-              icon={<CopyIcon color={useColorModeValue("black", "black")} />}
+              icon={<CopyIcon color={colorMode("black", "black")} />}
               variant={"outline"}
               ml={"2px"}
               h={"100%"}
@@ -115,7 +119,7 @@ export default function MintButton(props: MintButtonProps) {
                 onClick={() => {
                   navigator.clipboard.writeText(transactionHash);
                 }}
-                icon={<CopyIcon color={useColorModeValue("green", "green")} />}
+                icon={<CopyIcon color={colorMode("green", "green")} />}
                 variant={"outline"}
                 ml={"2px"}
                 h={"100%"}
