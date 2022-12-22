@@ -12,8 +12,10 @@ import {
 
 import { Montserrat } from "@next/font/google";
 import MintButton from "../MintButton";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { CheckCircleIcon } from "@chakra-ui/icons";
+import { useWeb3React } from "@web3-react/core";
+import { PenguinAddress } from "../../src/utils";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
@@ -25,6 +27,28 @@ interface MintCardProps {
 
 export default function MintCard(props: MintCardProps) {
   const { canMint, totalTokens, availableTokens } = props;
+  const { library, chainId, account, activate, deactivate, active } =
+    useWeb3React();
+
+  const [hasToken, setHasToken] = useState(false);
+
+  useEffect(() => {
+    if (active && account) {
+      const url =
+        "https://testnets-api.opensea.io/api/v1/assets?owner=" +
+        account +
+        "&asset_contract_address=" +
+        PenguinAddress +
+        "&order_direction=desc&offset=0&limit=20&include_orders=false";
+      const data = fetch(url)
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.assets && data.assets.length > 0) {
+            setHasToken(true);
+          }
+        });
+    }
+  }, [active, account]);
 
   const canMintToast = useToast();
 
@@ -101,7 +125,14 @@ export default function MintCard(props: MintCardProps) {
             <br />
             Just check them manually, then you will see the mint button.
           </Text>
-          <MintButton available={canMint} />
+          {hasToken && (
+            <Text color={"green"}>
+              <CheckCircleIcon color={"green"} /> You can have only one soul
+              penguin!
+            </Text>
+          )}
+          <MintButton available={hasToken ? false : canMint} />
+
           <Progress
             size={"sm"}
             value={(availableTokens / totalTokens) * 100}
