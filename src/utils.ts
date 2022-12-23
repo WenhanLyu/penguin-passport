@@ -333,7 +333,7 @@ export const TestToadzABI = [
   },
 ];
 
-export const PenguinAddress = "0x9eaCb6B01C6d1c0a96E1b3786189Bc9A7907F2b3";
+export const PenguinAddress = "0x7C43D27Bf4002dB980DFD6638eCa428ddD70E07f";
 
 export const PenguinABI = [
   {
