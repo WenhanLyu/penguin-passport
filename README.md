@@ -1,6 +1,6 @@
 # Penguin Passport
 
-This is the front-end part of a research project in CSCI-GA.3033-078.
+Penguin Passport is a dApp with our own Penguin token.
 More information can be found in the ABOUT page of this website.
 
 ## To build and run
